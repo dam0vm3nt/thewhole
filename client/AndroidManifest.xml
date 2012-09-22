@@ -1,5 +1,5 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="com.themovement.app"
+    package="org.dam0vm3nt.client"
     android:versionCode="1"
     android:versionName="1.0" >
 

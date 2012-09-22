@@ -1,4 +1,4 @@
-package com.themovement.app;
+package org.dam0vm3nt.client;
 
 import android.os.Bundle;
 import android.app.Activity;
