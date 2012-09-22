@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <string name="app_name">Spring Android</string>
+    
+    <string name="text_http_get_description">These examples retrieve a list of states from the 
+    example server. Use the MappingJacksonHttpMessageConverter to marshal JSON objects or use 
+    the SimpleXmlHttpMessageConverter to marshal XML objects via HTTP GET requests.</string>
+    
+    <string name="text_http_get_parameters_description">These examples pass a parameter to the 
+    RestTemplate instance to retrieve a state by its abbreviation. Use the 
+    MappingJacksonHttpMessageConverter to marshal JSON objects or use the 
+    SimpleXmlHttpMessageConverter to marshal XML objects via HTTP GET requests.</string>
+    
+    <string name="text_http_post_description">These examples make HTTP POST requests to the server.</string>
+    
+    <string name="text_rss_description">These examples retrieve the RSS feed from blog.springsource.com. 
+    RSS feeds can be retrieved with the SyndFeedHttpMessageConverter or the more specific 
+    RssChannelHttpMessageConverter. The SyndFeed message converter supports RSS and ATOM using an 
+    abstracted object model.</string>
+    
+    <string name="text_atom_description">These examples retrieve the ATOM feed from 
+    jira.springframework.org. ATOM feeds can be retrieved with the SyndFeedHttpMessageConverter 
+    or the more specific AtomFeedHttpMessageConverter. The SyndFeed message converter supports 
+    RSS and ATOM using an abstracted object model.</string>
+    
+	<string name="twitter_description">Twitter example using Spring Social.</string>
+	
+	<string name="facebook_description">Facebook example using Spring Social</string>
+    
+	<string-array name="main_options">
+		<item>Google Search</item>
+        <item>HTTP GET</item>
+        <item>HTTP GET with parameters</item>
+        <item>HTTP POST</item>
+    	<item>RSS</item>
+		<item>ATOM</item>
+		<item>Twitter</item>
+		<item>Facebook</item>
+	</string-array>
+	
+	<string-array name="http_get_activity_options">
+		<item>JSON</item>
+		<item>XML</item>
+	</string-array>
+	
+	<string-array name="http_post_activity_options">
+		<item>String</item>
+		<item>JSON and XML</item>
+		<item>MultiValueMap</item>
+		<item>Form Data</item>
+	</string-array>
+            
+	<string-array name="rss_activity_options">
+		<item>SyndFeed</item>
+		<item>RssChannel</item>
+	</string-array>
+	
+	<string-array name="atom_activity_options">
+		<item>SyndFeed</item>
+		<item>AtomFeed</item>
+	</string-array>
+		
+</resources>

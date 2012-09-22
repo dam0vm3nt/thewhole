@@ -1,0 +1,183 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+	<modelVersion>4.0.0</modelVersion>
+	
+	<groupId>org.dam0vm3nt.android</groupId>
+	<artifactId>dam0vm3nt-client</artifactId>
+	<version>0.0.1-SNAPSHOT</version>
+	<packaging>apk</packaging>
+	<name>DAm0VM3NT % Client</name>
+	<url>http://www.dam0vm3nt.org</url> 
+	<organization>
+		<name>DAm0VM3NT - mobile democracy</name>
+		<url>http://www.dam0vm3nt.org</url>
+	</organization>
+
+	<properties> 
+		<android-platform>15</android-platform>
+		<android-emulator>GN</android-emulator>
+		<maven-android-plugin-version>2.8.4</maven-android-plugin-version>
+		<maven-compiler-plugin-version>2.3.2</maven-compiler-plugin-version>
+		<maven-eclipse-plugin-version>2.8</maven-eclipse-plugin-version>
+		<android-version>4.0.1.2</android-version>
+		<!-- Available Android versions: 1.5_r3, 1.5_r4, 1.6_r2, 2.1.2, 2.1_r1, 2.2.1, 2.3.1, 2.3.3 -->
+		<spring-android-version>1.0.0.M3</spring-android-version>
+		<spring-social-version>1.0.0.M3</spring-social-version>
+		<jackson-version>1.8.0</jackson-version>
+		<simple-version>2.5.3</simple-version>
+		<android-rome-version>1.0.0-r2</android-rome-version>
+		<sdk.path>/home/vittorio/Tools/android-sdks</sdk.path>
+	</properties>
+
+	<build>
+		<sourceDirectory>src</sourceDirectory>
+		<finalName>${project.artifactId}</finalName>
+		<plugins>
+			<plugin>
+				<groupId>com.jayway.maven.plugins.android.generation2</groupId>
+				<artifactId>maven-android-plugin</artifactId>
+				<version>${maven-android-plugin-version}</version>
+				<configuration>
+					<sdk>
+						<platform>${android-platform}</platform>
+					</sdk>
+					<emulator>
+						<avd>${android-emulator}</avd>
+					</emulator>
+					<deleteConflictingFiles>true</deleteConflictingFiles>
+					<undeployBeforeDeploy>true</undeployBeforeDeploy>
+				</configuration>
+				<extensions>true</extensions>
+			</plugin>
+			<plugin>
+				<artifactId>maven-compiler-plugin</artifactId>
+				<version>${maven-compiler-plugin-version}</version>
+			</plugin>
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-eclipse-plugin</artifactId>
+				<version>${maven-eclipse-plugin-version}</version>
+ 				<configuration>
+					<downloadSources>true</downloadSources>
+					<downloadJavadocs>true</downloadJavadocs>
+				</configuration>
+			</plugin>
+		</plugins>
+	</build>
+
+	<dependencies>
+		<dependency>
+			<groupId>com.google.android</groupId>
+			<artifactId>android</artifactId>
+			<version>${android-version}</version>
+			<scope>provided</scope>
+		</dependency>
+ 		<dependency>
+			<groupId>org.springframework.android</groupId>
+			<artifactId>spring-android-rest-template</artifactId>
+			<version>${spring-android-version}</version>
+		</dependency>
+		<dependency>
+			<groupId>org.springframework.android</groupId>
+			<artifactId>spring-android-auth</artifactId>
+			<version>${spring-android-version}</version>
+		</dependency>
+		<dependency>
+			<groupId>org.springframework.social</groupId>
+			<artifactId>spring-social-twitter</artifactId>
+			<version>${spring-social-version}</version>
+			<exclusions>
+				<exclusion>
+					<!-- Exclude in favor of Spring Android RestTemplate -->
+					<artifactId>spring-social-web</artifactId>
+					<groupId>org.springframework.social</groupId>
+				</exclusion>
+				<exclusion>
+					<!-- Provided by Android -->
+					<artifactId>commons-logging</artifactId>
+					<groupId>commons-logging</groupId>
+				</exclusion>
+			</exclusions>
+		</dependency>
+		<dependency>
+			<groupId>org.springframework.social</groupId>
+			<artifactId>spring-social-facebook</artifactId>
+			<version>${spring-social-version}</version>
+			<exclusions>
+				<exclusion>
+					<!-- Exclude in favor of Spring Android RestTemplate -->
+					<artifactId>spring-social-web</artifactId>
+					<groupId>org.springframework.social</groupId>
+				</exclusion>
+				<exclusion>
+					<!-- Provided by Android -->
+					<artifactId>commons-logging</artifactId>
+					<groupId>commons-logging</groupId>
+				</exclusion>
+				<exclusion>
+					<artifactId>spring-webmvc</artifactId>
+					<groupId>org.springframework</groupId>
+				</exclusion>
+			</exclusions>
+		</dependency>
+		<dependency>
+			<!-- Using Jackson for JSON marshaling -->
+			<groupId>org.codehaus.jackson</groupId>
+			<artifactId>jackson-mapper-asl</artifactId>
+			<version>${jackson-version}</version>
+		</dependency>
+		<dependency>
+			<!-- Using Simple for XML marshaling -->
+			<groupId>org.simpleframework</groupId>
+			<artifactId>simple-xml</artifactId>
+			<version>${simple-version}</version>
+			<exclusions>
+				<!-- StAX is not available on Android -->
+ 				<exclusion>
+					<artifactId>stax</artifactId>
+					<groupId>stax</groupId>
+				</exclusion>
+				<exclusion>
+					<artifactId>stax-api</artifactId>
+					<groupId>stax</groupId>
+				</exclusion>
+				<!-- Provided by Android -->
+				<exclusion>
+					<artifactId>xpp3</artifactId>
+					<groupId>xpp3</groupId>
+				</exclusion>
+			</exclusions>
+		</dependency>
+		<dependency>
+			<!-- Using ROME for RSS and ATOM feeds -->
+			<groupId>com.google.code.android-rome-feed-reader</groupId>
+			<artifactId>android-rome-feed-reader</artifactId>
+			<version>${android-rome-version}</version>
+		</dependency>
+	</dependencies>
+
+	<repositories>
+		<!-- For developing with Android ROME Feed Reader -->
+		<repository>
+			<id>android-rome-feed-reader-repository</id>
+			<name>Android ROME Feed Reader Repository</name>
+			<url>https://android-rome-feed-reader.googlecode.com/svn/maven2/releases</url>
+		</repository>
+		<!-- For testing against latest Spring snapshots -->
+		<repository>
+			<id>org.springframework.maven.snapshot</id>
+			<name>Spring Maven Snapshot Repository</name>
+			<url>http://maven.springframework.org/snapshot</url>
+			<releases><enabled>false</enabled></releases>
+			<snapshots><enabled>true</enabled></snapshots>
+		</repository>
+		<!-- For developing against latest Spring milestones -->
+		<repository>
+			<id>org.springframework.maven.milestone</id>
+			<name>Spring Maven Milestone Repository</name>
+			<url>http://maven.springframework.org/milestone</url>
+			<snapshots><enabled>false</enabled></snapshots>
+		</repository>
+	</repositories>
+	
+</project>
