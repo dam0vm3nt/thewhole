@@ -1,6 +1,6 @@
+<?xml version="1.0" encoding="utf-8"?>
 <resources>
-
-    <string name="app_name">daM0vM3NT</string>
+  <string name="app_name">daM0vM3NT</string>
     <string name="hello_world">Hello world!</string>
     <string name="menu_settings">Settings</string>
     <string name="title_activity_main">daM0vM3NT</string>
@@ -8,5 +8,4 @@
     <string name="login">login</string>
     <string name="or_register">... or register</string>
     <string name="testLogin">Test Login</string>
-
 </resources>

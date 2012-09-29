@@ -1,0 +1,5 @@
+- Create a new account type : 
+
+	see http://developer.android.com/training/id-auth/custom_auth.html
+	
+this is the dam0vm3nt account type. It is the start of the whole.
