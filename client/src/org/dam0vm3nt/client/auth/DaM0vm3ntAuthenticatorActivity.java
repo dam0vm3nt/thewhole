@@ -2,6 +2,9 @@ package org.dam0vm3nt.client.auth;
 
 
 import org.dam0vm3nt.client.R;
+import org.dam0vm3nt.client.services.AuthenticationException;
+import org.dam0vm3nt.client.services.DaM0vm3ntService;
+import org.dam0vm3nt.client.services.Services;
 
 import android.accounts.AccountAuthenticatorActivity;
 import android.os.Bundle;
@@ -13,7 +16,7 @@ import android.widget.TextView;
 public class DaM0vm3ntAuthenticatorActivity extends
 		AccountAuthenticatorActivity {
 
-	private EditText mEditText;
+	private EditText mUsername;
 	
 	private EditText mPassword;
 	
@@ -26,7 +29,7 @@ public class DaM0vm3ntAuthenticatorActivity extends
 		super.onCreate(icicle);
 		setContentView(R.layout.login);
 	
-		mEditText = (EditText) findViewById(R.id.username);
+		mUsername = (EditText) findViewById(R.id.username);
 		
 		mPassword = (EditText) findViewById(R.id.password);
 		
@@ -53,12 +56,35 @@ public class DaM0vm3ntAuthenticatorActivity extends
 	}
 
 	protected void doRegister() {
-		// TODO Auto-generated method stub
+		doIt(true);
+	}
+
+	private void doIt(boolean pRegister) {
+		try {
+			String lUsername = mUsername.getText().toString();
+			String lPassword = mPassword.getText().toString();
+			DaM0vm3ntService lMainService = Services.$(DaM0vm3ntService.class);
+			if (pRegister) {
+				lMainService.registerNewAccount(lUsername, lPassword);
+			} else {
+				lMainService.authenticate(lUsername, lPassword);
+			}
+			registerAccount(lUsername);
+			
+		} catch (AuthenticationException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+	}
+
+	private void registerAccount(String pUsername) {
+		final Account account = new Account(mUsername, your_account_type);
+		AccountManager.addAccountExplicitly(account, mPassword, null);
 		
 	}
 
 	protected void doLogin() {
-		// TODO Auto-generated method stub
+		doIt(false);
 		
 	}
 
