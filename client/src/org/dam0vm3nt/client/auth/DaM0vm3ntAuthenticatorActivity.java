@@ -11,6 +11,7 @@ import android.accounts.Account;
 import android.accounts.AccountAuthenticatorActivity;
 import android.accounts.AccountManager;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -73,10 +74,12 @@ public class DaM0vm3ntAuthenticatorActivity extends
 			} else {
 				lId = lMainService.authenticate(lUsername, lPassword);
 			}
+			
+			registerAccount(lUsername, lPassword, lId);
 		
 			Bundle lBundle = new Bundle();
-			lBundle.putSerializable("ID", lId);
-			
+			lBundle.putString(AccountManager.KEY_ACCOUNT_NAME, lUsername);
+			lBundle.putString(AccountManager.KEY_ACCOUNT_TYPE,DaM0vm3ntAuthenticator.TYPE);
 			setAccountAuthenticatorResult(lBundle);
 			finish();
 			
@@ -85,20 +88,14 @@ public class DaM0vm3ntAuthenticatorActivity extends
 			e.printStackTrace();
 		}
 	}
-
-	private void fireLoggedInEvent(AccountID pId) {
-		// TODO Auto-generated method stub
-		
-	}
-
-	/*
+	
 	private void registerAccount(String pUsername,String pPassword, AccountID pId) {
 		
 		final Account account = new Account(pUsername, DaM0vm3ntAuthenticator.TYPE);
-		Bundle lUserData = new Bundle();
-		lUserData.putSerializable("ID", pId);		
-		AccountManager.get(this).addAccountExplicitly(account, pPassword, lUserData);
-	}*/
+		if (!AccountManager.get(this).addAccountExplicitly(account, null, null)) {
+			Log.e("Account", "Cannot add account "+pUsername);
+		}
+	}
 
 	protected void doLogin() {
 		doIt(false);

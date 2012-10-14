@@ -18,7 +18,7 @@ public class DaM0vm3ntAuthenticator extends
 	
 	public DaM0vm3ntAuthenticator(Context context) {
 		super(context);
-
+		this.mContext = context;
 	}
 
 	@Override
@@ -26,6 +26,7 @@ public class DaM0vm3ntAuthenticator extends
 			String pAuthTokenType, String[] pRequiredFeatures, Bundle pOptions)
 			throws NetworkErrorException {
 		Bundle lBundle = new Bundle();
+	
 		Intent lIntent = new Intent(mContext, DaM0vm3ntAuthenticatorActivity.class);
 		lBundle.putParcelable(AccountManager.KEY_INTENT, lIntent);
 		lBundle.putParcelable(AccountManager.KEY_ACCOUNT_MANAGER_RESPONSE, pResponse);
