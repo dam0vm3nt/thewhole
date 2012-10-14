@@ -2,11 +2,14 @@ package org.dam0vm3nt.client.auth;
 
 
 import org.dam0vm3nt.client.R;
+import org.dam0vm3nt.client.services.AccountID;
 import org.dam0vm3nt.client.services.AuthenticationException;
 import org.dam0vm3nt.client.services.DaM0vm3ntService;
 import org.dam0vm3nt.client.services.Services;
 
+import android.accounts.Account;
 import android.accounts.AccountAuthenticatorActivity;
+import android.accounts.AccountManager;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
@@ -64,12 +67,18 @@ public class DaM0vm3ntAuthenticatorActivity extends
 			String lUsername = mUsername.getText().toString();
 			String lPassword = mPassword.getText().toString();
 			DaM0vm3ntService lMainService = Services.$(DaM0vm3ntService.class);
+			AccountID lId;
 			if (pRegister) {
-				lMainService.registerNewAccount(lUsername, lPassword);
+				lId = lMainService.registerNewAccount(lUsername, lPassword);
 			} else {
-				lMainService.authenticate(lUsername, lPassword);
+				lId = lMainService.authenticate(lUsername, lPassword);
 			}
-			registerAccount(lUsername);
+		
+			Bundle lBundle = new Bundle();
+			lBundle.putSerializable("ID", lId);
+			
+			setAccountAuthenticatorResult(lBundle);
+			finish();
 			
 		} catch (AuthenticationException e) {
 			// TODO Auto-generated catch block
@@ -77,11 +86,19 @@ public class DaM0vm3ntAuthenticatorActivity extends
 		}
 	}
 
-	private void registerAccount(String pUsername) {
-		final Account account = new Account(mUsername, your_account_type);
-		AccountManager.addAccountExplicitly(account, mPassword, null);
+	private void fireLoggedInEvent(AccountID pId) {
+		// TODO Auto-generated method stub
 		
 	}
+
+	/*
+	private void registerAccount(String pUsername,String pPassword, AccountID pId) {
+		
+		final Account account = new Account(pUsername, DaM0vm3ntAuthenticator.TYPE);
+		Bundle lUserData = new Bundle();
+		lUserData.putSerializable("ID", pId);		
+		AccountManager.get(this).addAccountExplicitly(account, pPassword, lUserData);
+	}*/
 
 	protected void doLogin() {
 		doIt(false);

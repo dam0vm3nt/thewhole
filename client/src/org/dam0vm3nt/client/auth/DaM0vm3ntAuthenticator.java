@@ -3,24 +3,33 @@ package org.dam0vm3nt.client.auth;
 import android.accounts.AbstractAccountAuthenticator;
 import android.accounts.Account;
 import android.accounts.AccountAuthenticatorResponse;
+import android.accounts.AccountManager;
 import android.accounts.NetworkErrorException;
 import android.content.Context;
+import android.content.Intent;
 import android.os.Bundle;
 
 public class DaM0vm3ntAuthenticator extends
 		AbstractAccountAuthenticator {
+	
+	public final static String TYPE = "org.dam0vm3nt.client.auth.DaM0vm3ntAuthenticator";
 
+	private Context mContext;
+	
 	public DaM0vm3ntAuthenticator(Context context) {
 		super(context);
-		// TODO Auto-generated constructor stub
+
 	}
 
 	@Override
-	public Bundle addAccount(AccountAuthenticatorResponse arg0, String arg1,
-			String arg2, String[] arg3, Bundle arg4)
+	public Bundle addAccount(AccountAuthenticatorResponse pResponse, String pAccountType,
+			String pAuthTokenType, String[] pRequiredFeatures, Bundle pOptions)
 			throws NetworkErrorException {
-		// TODO Auto-generated method stub
-		return null;
+		Bundle lBundle = new Bundle();
+		Intent lIntent = new Intent(mContext, DaM0vm3ntAuthenticatorActivity.class);
+		lBundle.putParcelable(AccountManager.KEY_INTENT, lIntent);
+		lBundle.putParcelable(AccountManager.KEY_ACCOUNT_MANAGER_RESPONSE, pResponse);
+		return lBundle;
 	}
 
 	@Override

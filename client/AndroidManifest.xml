@@ -6,6 +6,7 @@
     <uses-sdk
         android:minSdkVersion="8"
         android:targetSdkVersion="15" />
+    <uses-permission android:name="android.permission.AUTHENTICATE_ACCOUNTS"/>
 
     <application
         android:icon="@drawable/ic_launcher"
@@ -21,6 +22,12 @@
             </intent-filter>
         </activity>
         <activity android:name=".auth.DaM0vm3ntAuthenticatorActivity"></activity>
+        <service android:name=".auth.AuthenticatorService">
+            <intent-filter>
+                <action android:name="android.accounts.AccountAuthenticator"/>
+            </intent-filter>
+            <meta-data android:name="android.accounts.AccountAuthenticator" android:resource="@xml/authenticator"/>
+        </service>
     </application>
 
 </manifest>

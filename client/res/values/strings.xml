@@ -6,7 +6,7 @@
     <string name="title_activity_main">daM0vM3NT</string>
     <string name="username">username</string>
     <string name="login">login</string>
-    <string name="or_register">... or register</string>
+    <string name="or_register">&#8230; or register</string>
     <string name="testLogin">Test Login</string>
 
 </resources>
